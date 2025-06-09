@@ -1,0 +1,32 @@
+RewriteEngine On
+
+# Handle CORS preflight requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Authentication routes
+RewriteRule ^login/student/?$ auth/login_student.php [L]
+RewriteRule ^login/admin/?$ auth/login_admin.php [L]
+RewriteRule ^register/student/?$ auth/register_student.php [L]
+RewriteRule ^register/admin/?$ auth/register_admin.php [L]
+
+# Students routes
+RewriteRule ^students/?$ students/index.php [L]
+RewriteRule ^students/([0-9]+)/?$ students/show.php?id=$1 [L]
+
+# Admins routes
+RewriteRule ^admins/?$ admins/index.php [L]
+
+# Projects routes
+RewriteRule ^projects/?$ projects/index.php [L]
+
+# Announcements routes
+RewriteRule ^announcements/?$ announcements/index.php [L]
+RewriteRule ^announcements/([0-9]+)/?$ announcements/show.php?id=$1 [L]
+RewriteRule ^announcements/([0-9]+)/update/?$ announcements/update.php?id=$1 [L]
+RewriteRule ^announcements/([0-9]+)/delete/?$ announcements/delete.php?id=$1 [L]
+
+# Wishlist routes
+RewriteRule ^wishlists/?$ wishlist/index.php [L]
+RewriteRule ^wishlist/?$ wishlist/index.php [L]
+RewriteRule ^wishlist/([0-9]+)/?$ wishlist/show.php?student_id=$1 [L]
